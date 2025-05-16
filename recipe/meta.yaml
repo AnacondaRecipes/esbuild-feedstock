@@ -1,11 +1,12 @@
+{% set name = "esbuild" %}
 {% set version = "0.25.4" %}
 
 package:
-  name: esbuild
+  name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://github.com/evanw/esbuild/archive/refs/tags/v{{ version }}.tar.gz
+  url: https://github.com/evanw/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
   sha256: 4661a2b1d2b1db035a19eca5e771a40b6c16b23279aae02022def9fa45ed5ad9
 
 build:
@@ -22,15 +23,22 @@ requirements:
     - nodejs >=14
 
 test:
+  requires:
+    - nodejs
   commands:
     - esbuild --version
+    - esbuild --help
 
 about:
-  home: https://esbuild.github.io/
+  home: https://github.com/evanw/esbuild
   license: MIT
   license_family: MIT
   license_file: LICENSE.md
   summary: An extremely fast javascript bundler
+  description: |
+    esbuild is an extremely fast JavaScript bundler that packages up JavaScript
+    and TypeScript code for distribution on the web. Key features include:
+  doc_url: https://esbuild.github.io/
   dev_url: https://github.com/evanw/esbuild
 
 extra:
