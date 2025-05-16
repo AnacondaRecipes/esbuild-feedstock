@@ -12,16 +12,20 @@ fi
 
 echo "Building for target_platform: $target_platform with GOARCH: $GOARCH"
 
+# Make sure Go module cache is writeable before and after build
 export GOPATH=${SRC_DIR}/gopath
 mkdir -p ${GOPATH}
 export GO111MODULE=auto
 export CGO_ENABLED=0
 
+# Build esbuild
 make esbuild
 
-find ${GOPATH} -type d -exec chmod u+w {} \;
-find ${GOPATH} -type f -exec chmod u+w {} \;
-
+# Install the binary
 mkdir -p $PREFIX/bin
 cp esbuild $PREFIX/bin/esbuild
+
+# Enable removal of build tree on osx
+find ${GOPATH} -type d -exec chmod u+w {} \;
+find ${GOPATH} -type f -exec chmod u+w {} \;
 
