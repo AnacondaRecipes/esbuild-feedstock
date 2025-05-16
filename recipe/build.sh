@@ -12,11 +12,9 @@ fi
 
 echo "Building for target_platform: $target_platform with GOARCH: $GOARCH"
 
-# Make sure Go module cache is writeable before and after build
+# Set up Go path
 export GOPATH=${SRC_DIR}/gopath
 mkdir -p ${GOPATH}
-export GO111MODULE=auto
-export CGO_ENABLED=0
 
 # Build esbuild
 make esbuild
