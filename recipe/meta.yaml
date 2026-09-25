@@ -16,10 +16,11 @@ build:
 
 requirements:
   build:
+    - {{ stdlib('c') }}
     - {{ compiler('go-nocgo') }}
-    - make     # [unix]
-    - m2-base  # [win]
-    - m2-make  # [win]
+    - make        # [unix]
+    - msys2-base  # [win]
+    - msys2-make  # [win]
     - nodejs >=14
 
 test:
